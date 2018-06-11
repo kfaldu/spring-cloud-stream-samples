@@ -24,6 +24,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 
 import demo.repository.OrderRepository;
+import org.springframework.cloud.stream.messaging.Sink;
 
 /**
  *
@@ -47,6 +48,18 @@ public class OrderStreamConfiguration {
 		}
 		else {
 			logger.info("An order has been placed from this service " + event.toString());
+		}
+	}
+
+	@StreamListener("myOrdersIn")
+	public void processMyOrder(Event event) {
+		//log the order received
+		if (!event.getOriginator().equals("KinesisProducer")) {
+			logger.info("~~An order has been received " + event.toString());
+			orders.save(event.getSubject());
+		}
+		else {
+			logger.info("~~An order has been placed from this service " + event.toString());
 		}
 	}
 

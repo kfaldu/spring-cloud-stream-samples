@@ -18,6 +18,8 @@ package demo.stream;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
@@ -35,5 +37,8 @@ public interface OrderProcessor {
 
 	@Input
 	SubscribableChannel ordersIn();
+
+    @Input
+    SubscribableChannel myOrdersIn();
 
 }

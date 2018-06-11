@@ -16,13 +16,15 @@
 
 package demo.controller;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
+import demo.data.Order;
+import demo.repository.OrderRepository;
+import demo.stream.Event;
+import demo.stream.OrdersSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import demo.data.*;
-import demo.repository.*;
-import demo.stream.*;
 
 /**
  *
@@ -50,7 +52,7 @@ public class OrderController {
 		return orderList;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value ="/", method = RequestMethod.POST)
 	public ResponseEntity<Order> add(@RequestBody Order input) {
 
 		orders.save(input);

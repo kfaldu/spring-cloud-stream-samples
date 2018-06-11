@@ -9,27 +9,26 @@ security:
   name: admin
   password: 2c76788d-e661-49fd-baba-4b41e7c1dd47
 
-  
 spring:
   cloud:
     stream:
       bindings:
         ordersOut: 
-          destination: test_stream
+          destination: lab_csi
           content-type: application/json
           producer: 
             partitionKeyExpression: "1" 
         ordersIn:
-          destination: test_stream
+          destination: lab_csi
           content-type: application/json
-    
-          
-          
+        myOrdersIn:
+          destination: lab_csi2
+          content-type: application/json
+
 cloud:  
   aws:  
     region:  
-      static: eu-west-1 
-
+      static: us-east-1
 
 logging: 
   level:
